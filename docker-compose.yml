@@ -1,0 +1,38 @@
+version: "3.3"
+services:
+  service:
+    networks:
+      - rplss.net
+    restart: always
+    image: vladazn/rplss/service:test
+    depends_on:
+      - redis
+  api:
+    networks:
+      - rplss.net
+    restart: always
+    image: vladazn/rplss/api:test
+    ports:
+      - "8088:8080"
+    depends_on:
+      - service
+  swagger:
+    networks:
+      - rplss.net
+    restart: always
+    image: vladazn/rplss/swagger:test
+    environment:
+      - HOST=localhost:8088
+    ports:
+      - "8080:8080"
+    depends_on:
+      - api
+  redis:
+    networks:
+      - rplss.net
+    image: redis
+    entrypoint:
+      - /usr/local/bin/redis-server
+networks:
+  rplss.net:
+    driver: bridge

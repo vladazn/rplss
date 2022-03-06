@@ -1,0 +1,28 @@
+choices:
+  paper:
+    - rock
+    - spock
+  scissors:
+    - paper
+    - lizard
+  spock:
+    - rock
+    - scissors
+  lizard:
+    - paper
+    - spock
+  rock:
+    - lizard
+    - scissors
+
+redis:
+  host: redis
+  port: 6379
+  db: 0
+
+jwt:
+  key: verysecretkey
+
+grpc:
+  host: localhost
+  port: 8080
